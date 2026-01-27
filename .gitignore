@@ -3,7 +3,10 @@ __pycache__/
 .DS_Store
 .venv
 venv/
-*.gguf    # 忽略所有大模型文件
+# 忽略所有大模型文件
+*.gguf
 *.pt
-output/   # 忽略输出结果
-data/     # 忽略数据集
+# 忽略输出结果
+output/
+# 忽略数据集
+data/

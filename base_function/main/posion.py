@@ -68,16 +68,16 @@ if yield_col:
     # 确保没有空值
     df_pos = df.dropna(subset=[pos_col, yield_col]).copy()
 
-# 【优化】智能自然排序 (M1 -> M2 -> ... -> M10)
+    # 【优化】智能自然排序 (M1 -> M2 -> ... -> M10)
     # 提取数字进行排序
-def extract_pos_num(val):
-    match = re.search(r'(\d+)', str(val))
-    return int(match.group(1)) if match else 999
+    def extract_pos_num(val):
+        match = re.search(r'(\d+)', str(val))
+        return int(match.group(1)) if match else 999
 
-unique_positions = sorted(df_pos[pos_col].unique(), key=extract_pos_num)
+    unique_positions = sorted(df_pos[pos_col].unique(), key=extract_pos_num)
 
     # 过滤无效位置
-df_pos = df_pos[df_pos[pos_col].isin(unique_positions)]
+    df_pos = df_pos[df_pos[pos_col].isin(unique_positions)]
 
     print(f"分析位置范围: {unique_positions}")
 else:
@@ -144,15 +144,15 @@ plt.close()
 # --- 图表 2: 良率状态堆叠图 (Pass vs Fail) ---
 # ##### 【修改】: 使用 Is_Pass 生成堆叠图，更加通用 #####
 print("绘制图表 2: 良品/不良品分布堆叠图...")
-    plt.figure(figsize=(14, 7))
-    
+plt.figure(figsize=(14, 7))
+
 # 映射标签名
 df_pos['Status_Str'] = df_pos[yield_col].map({1: 'Pass (良品)', 0: 'Fail (不良)'})
 
 # 交叉表
 ct = pd.crosstab(df_pos[pos_col], df_pos['Status_Str'], normalize='index')
-    ct = ct.reindex(unique_positions)
-    
+ct = ct.reindex(unique_positions)
+
 # 颜色: 不良=红, 良品=绿
 colors = {'Fail (不良)': '#E74C3C', 'Pass (良品)': '#2ECC71'}
 valid_cols = [c for c in ct.columns if c in colors]
@@ -160,15 +160,15 @@ color_list = [colors[c] for c in valid_cols]
 
 ct[valid_cols].plot(kind='bar', stacked=True, color=color_list,
             figsize=(14, 7), edgecolor='white', width=0.8)
-    
+
 plt.title('各位置良品/不良品占比 (Stacked)', fontsize=14)
 plt.ylabel('占比 (Ratio)')
-    plt.xlabel('位置编码')
+plt.xlabel('位置编码')
 plt.legend(bbox_to_anchor=(1.01, 1), loc='upper left')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
+plt.xticks(rotation=45)
+plt.tight_layout()
 plt.savefig(os.path.join(output_dir, '2_Position_Pass_Fail_Ratio.png'))
-    plt.close()
+plt.close()
 
 # --- 图表 3: 关键物理参数分布箱线图 ---
 # ##### 【修改】: 确保列名正确存在才画图 #####
