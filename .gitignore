@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv
+venv/
+*.gguf    # 忽略所有大模型文件
+*.pt
+output/   # 忽略输出结果
+data/     # 忽略数据集
