@@ -22,7 +22,7 @@ matplotlib.use('Agg')
 TRANSLATIONS = {
     '中文': {
         # --- 基础/侧边栏 ---
-        'page_title': "AI半导体生产助手",
+        'page_title': "AI半导体器件生产助手",
         'sidebar_header': "1. 数据源",
         'sidebar_settings': "2. 变量设置",
         'select_target': "选择目标变量 (Y)",

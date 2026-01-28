@@ -10,7 +10,7 @@ import ai_analysis
 import full_report        # <--- 新增导入
 
 # 1. 语言配置和主题设置
-st.set_page_config(page_title="AI Semiconductor Production Assistant", layout="wide")
+st.set_page_config(page_title="AI Semiconductor Device Production Assistant", layout="wide")
 
 # 主题切换（在侧边栏顶部，仅影响AI报告页面）
 if 'theme' not in st.session_state:
