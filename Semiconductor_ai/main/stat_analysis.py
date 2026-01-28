@@ -980,7 +980,7 @@ def render_deep_mining(df, t, target_col, id_col=None):
             st.markdown("""
             <style>
             .suggestion-card {
-                background-color: #f0f9eb;
+                background-color: rgba(103, 194, 58, 0.1);
                 border-radius: 8px;
                 padding: 20px;
                 margin-bottom: 15px;
@@ -999,10 +999,11 @@ def render_deep_mining(df, t, target_col, id_col=None):
             .suggestion-title {
                 font-size: 18px;
                 font-weight: 600;
-                color: #2c3e50;
+                color: var(--text-color);
             }
             .suggestion-content {
-                color: #5e6d82;
+                color: var(--text-color);
+                opacity: 0.9;
                 font-size: 15px;
                 line-height: 1.6;
                 margin-left: 36px;
